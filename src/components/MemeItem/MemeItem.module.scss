@@ -1,0 +1,18 @@
+.meme-item {
+    margin: 1rem;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 0.625rem;
+    overflow: hidden;
+    width: 12.5rem;
+  }
+
+  .meme-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .meme-title {
+    font-size: 1.2rem;
+    margin: 0.625rem 0;
+  }

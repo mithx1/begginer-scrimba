@@ -1,0 +1,28 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  background-color: #21222A;
+  height: 5.5rem;
+  padding: 1.9rem 1.5rem;
+}
+
+.navBar > h3, .navBar > h4 {
+  margin: 0;
+}
+
+.navBar > h3 {
+  margin-right: auto;
+  color: aqua;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.navBar > h4 {
+  color: #DEEBF8;
+  font-weight: 600;
+}
+
+.navBar > img {
+  height: 2.5rem;
+  margin-right: 1rem;
+}
