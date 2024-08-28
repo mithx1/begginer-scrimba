@@ -18,9 +18,6 @@
 .env.test.local
 .env.production.local
 
-# Ignore any .env files
-.env*
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
