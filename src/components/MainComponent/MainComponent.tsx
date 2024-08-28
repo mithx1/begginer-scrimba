@@ -9,12 +9,20 @@ interface MemeTemplate {
   url: string;
 }
 
+const objectToQueryParam = (obj: { [key: string]: string | undefined }) => {
+  const params = Object.keys(obj).map(
+    (key) => `${key}=${encodeURIComponent(obj[key] ?? "")}`
+  );
+  return `?${params.join("&")}`;
+};
+
 const MainComponent: React.FC = () => {
   const [templates, setTemplates] = useState<MemeTemplate[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [selectedMeme, setSelectedMeme] = useState<MemeTemplate | null>(null);
   const [topText, setTopText] = useState<string>("");
   const [bottomText, setBottomText] = useState<string>("");
+  const [customMeme, setCustomMeme] = useState<any>(null);
 
   useEffect(() => {
     const fetchMemes = async () => {
@@ -33,7 +41,7 @@ const MainComponent: React.FC = () => {
     setSelectedMeme(meme);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const params = {
@@ -43,7 +51,31 @@ const MainComponent: React.FC = () => {
       username: process.env.REACT_APP_IMGFLIP_USERNAME,
       password: process.env.REACT_APP_IMGFLIP_PASSWORD,
     };
+
+    try {
+      const response = await fetch(
+        `https://api.imgflip.com/caption_image${objectToQueryParam(params)}`
+      );
+      const json = await response.json();
+      setCustomMeme(json.data.url);
+    } catch (error) {
+      console.error("Error creating meme:", error);
+    }
   };
+
+  if (customMeme) {
+    return (
+      <div className={styles["meme-container"]}>
+        <img src={customMeme} alt="Custom meme" />
+        <MemeItem
+          id="back"
+          name="Back"
+          url={customMeme}
+          onClick={() => setCustomMeme(null)}
+        ></MemeItem>
+      </div>
+    );
+  }
 
   return (
     <div className={styles["meme-container"]}>
