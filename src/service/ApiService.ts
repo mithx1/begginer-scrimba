@@ -1,5 +1,3 @@
-import axios from "axios";
-
 class ApiService {
   static async fetchMemes() {
     const response = await fetch("https://api.imgflip.com/get_memes");
