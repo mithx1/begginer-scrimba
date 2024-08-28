@@ -53,11 +53,8 @@ const MainComponent: React.FC = () => {
     };
 
     try {
-      const response = await fetch(
-        `https://api.imgflip.com/caption_image${objectToQueryParam(params)}`
-      );
-      const json = await response.json();
-      setCustomMeme(json.data.url);
+      const memeUrl = await ApiService.createMeme(params);
+      setCustomMeme(memeUrl);
     } catch (error) {
       console.error("Error creating meme:", error);
     }
