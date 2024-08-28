@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.281c4e24.css",
-    "main.js": "/static/js/main.fa2d6252.js",
-    "static/js/453.a2a45b5a.chunk.js": "/static/js/453.a2a45b5a.chunk.js",
-    "index.html": "/index.html",
-    "main.281c4e24.css.map": "/static/css/main.281c4e24.css.map",
-    "main.fa2d6252.js.map": "/static/js/main.fa2d6252.js.map",
-    "453.a2a45b5a.chunk.js.map": "/static/js/453.a2a45b5a.chunk.js.map"
+    "main.css": "/begginer-scrimba/static/css/main.281c4e24.css",
+    "main.js": "/begginer-scrimba/static/js/main.ef5b5ac6.js",
+    "static/js/453.a2a45b5a.chunk.js": "/begginer-scrimba/static/js/453.a2a45b5a.chunk.js",
+    "index.html": "/begginer-scrimba/index.html",
+    "main.281c4e24.css.map": "/begginer-scrimba/static/css/main.281c4e24.css.map",
+    "main.ef5b5ac6.js.map": "/begginer-scrimba/static/js/main.ef5b5ac6.js.map",
+    "453.a2a45b5a.chunk.js.map": "/begginer-scrimba/static/js/453.a2a45b5a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.281c4e24.css",
-    "static/js/main.fa2d6252.js"
+    "static/js/main.ef5b5ac6.js"
   ]
 }
