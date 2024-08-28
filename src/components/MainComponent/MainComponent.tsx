@@ -9,13 +9,6 @@ interface MemeTemplate {
   url: string;
 }
 
-const objectToQueryParam = (obj: { [key: string]: string | undefined }) => {
-  const params = Object.keys(obj).map(
-    (key) => `${key}=${encodeURIComponent(obj[key] ?? "")}`
-  );
-  return `?${params.join("&")}`;
-};
-
 const MainComponent: React.FC = () => {
   const [templates, setTemplates] = useState<MemeTemplate[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -23,6 +16,8 @@ const MainComponent: React.FC = () => {
   const [topText, setTopText] = useState<string>("");
   const [bottomText, setBottomText] = useState<string>("");
   const [customMeme, setCustomMeme] = useState<any>(null);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchMemes = async () => {
@@ -43,7 +38,8 @@ const MainComponent: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+    setLoading(true);
+    setError(null);
     const params = {
       template_id: selectedMeme?.id,
       text0: topText,
@@ -57,6 +53,9 @@ const MainComponent: React.FC = () => {
       setCustomMeme(memeUrl);
     } catch (error) {
       console.error("Error creating meme:", error);
+      setError("Failed to create meme. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,12 +63,7 @@ const MainComponent: React.FC = () => {
     return (
       <div className={styles["meme-container"]}>
         <img src={customMeme} alt="Custom meme" />
-        <MemeItem
-          id="back"
-          name="Back"
-          url={customMeme}
-          onClick={() => setCustomMeme(null)}
-        ></MemeItem>
+        <button onClick={() => setCustomMeme(null)}>Back</button>
       </div>
     );
   }
@@ -103,7 +97,10 @@ const MainComponent: React.FC = () => {
               onChange={(e) => setBottomText(e.target.value)}
             />
           </div>
-          <button type="submit">Create Meme</button>
+          <button type="submit">
+            {loading ? "Creating..." : "Create Meme"}
+          </button>
+          {error && <p className="error">{error}</p>}
         </form>
       ) : (
         templates.map((template) => (
