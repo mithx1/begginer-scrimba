@@ -62,7 +62,13 @@ const MainComponent: React.FC = () => {
   if (customMeme) {
     return (
       <div className={styles["meme-container"]}>
-        <img src={customMeme} alt="Custom meme" />
+        <img
+          src={customMeme}
+          alt="Custom meme"
+          onClick={() => {
+            setCustomMeme(null);
+          }}
+        />
         <button onClick={() => setCustomMeme(null)}>Back</button>
       </div>
     );
